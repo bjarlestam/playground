@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Timer</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="keywords" content="timer" />
+    <meta name="description" content="Interval timer" />
+    <link rel="apple-touch-icon" href="http://bjarlestam.github.com/ferrytimes/icon.png"/>
+    <link rel="favicon" href="icon.png"/>
+    
+    <style>
+    h2 {
+      font-size: 1.2em;
+      color: #AAA;
+    }
+    
+    body {
+      color: #F58B2F;
+      font-family: "Arial";
+      font-size: 3.5em;
+    }
+
+    #main {
+      width: 100%;
+      text-align: center;
+    }
+    
+    .rounded {
+      -moz-border-radius: 8px;
+      -webkit-border-radius: 8px;
+      border-radius: 8px;
+    }
+    
+    #counter {
+      font-size: 12rem;
+      color: #007367;
+    }
+        
+    </style>
+</head>
+<body>
+  <div id="main" class="rounded">
+    <div id="counter">0</div>
+    <button id="start">Start</button>
+  </div>
+  
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script type="text/javascript">
+  
+
+    $(document).ready(function() {
+      var supportsVibrate = "vibrate" in navigator;
+      
+      var startTime;
+      var timer;
+      var interval = 60;
+      
+      function tick() {
+        var seconds = Math.round((new Date().getTime() - startTime.getTime())/1000);
+        $('#counter').text(seconds);
+        if(seconds >= interval) {
+          startTime = new Date();
+          buzz();
+          ding();
+        }
+      }
+      
+      function startTimer() {
+        startTime = new Date();
+        timer = setInterval(tick, 1000);
+      }
+      
+      function buzz() {
+        if(supportsVibrate) {
+          navigator.vibrate(1000);
+        }
+      }
+      
+      function ding() {
+        var url = 'http://www.pdsounds.org/audio/download/258/chiming+pottery02.mp3';        
+        $("<audio autoplay='autoplay' style='display:none;' controls='controls'><source src='" + url + "' /></audio>").appendTo('body');
+      }
+      
+      $('#start').click(startTimer);
+      
+    });
+    
+  </script>
+</body>
