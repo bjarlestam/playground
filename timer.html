@@ -33,7 +33,7 @@
     }
     
     #counter {
-      font-size: 12rem;
+      font-size: 14rem;
       color: #007367;
     }
         
@@ -44,6 +44,7 @@
     <div id="counter">0</div>
     <button id="start">Start</button>
   </div>
+  <audio src="http://www.pdsounds.org/audio/download/258/chiming+pottery02.mp3" style="display:none;" id="speaker" preload="auto"></audio>
   
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
   <script type="text/javascript">
@@ -54,7 +55,7 @@
       
       var startTime;
       var timer;
-      var interval = 60;
+      var interval = 10;
       
       function tick() {
         var seconds = Math.round((new Date().getTime() - startTime.getTime())/1000);
@@ -78,11 +79,14 @@
       }
       
       function ding() {
-        var url = 'http://www.pdsounds.org/audio/download/258/chiming+pottery02.mp3';        
-        $("<audio autoplay='autoplay' style='display:none;' controls='controls'><source src='" + url + "' /></audio>").appendTo('body');
+//        var url = 'http://www.pdsounds.org/audio/download/258/chiming+pottery02.mp3';        
+//        $("<audio autoplay='autoplay' style='display:none;' controls='controls'><source src='" + url + "' /></audio>").appendTo('body');
+          var speaker = $('#speaker').get(0);
+          speaker.currentTime= 0;
+          speaker.play();
       }
       
-      $('#start').click(startTimer);
+      $('#start').click(ding);
       
     });
     
