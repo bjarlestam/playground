@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<head>
+	<title>Hidden message in console test</title>
+	<meta charset="utf-8">
+<style>
+h1 {
+ font-family: Helvetica,Arial,Verdana,sans-serif;
+ font-weight: 800;
+ color: #d33682;
+}
+
+body {
+  background-color: #002b36;
+}
+</style>
+</head>
+<body>
+<h1>Check your console</h1>
+<script>
+
+var css = "color: #fff; text-shadow:0 0 5px #fff,0 0 10px #fff,0 0 20px #fff,0 0 40px #0ff,0 0 80px #0ff,0 0 90px #0ff,0 0 100px #0ff,0 0 150px #0ff; background:#000; padding: 40px; font-size: 2rem;";
+
+  if(console) {
+    console.log("%cHej Kompis!, kom och jobba på svti", css);
+  }
+
+</script>
+</body>
+</html>
